@@ -1,0 +1,19 @@
+﻿# Visual Studio 관련
+.vs/
+*.user
+*.suo
+
+# 빌드 출력물
+bin/
+obj/
+
+# Python 관련
+__pycache__/
+*.pyc
+
+# 이미지, 데이터 결과물
+*.png
+preprocessed_data/
+
+# 기타
+*.log
