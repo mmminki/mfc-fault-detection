@@ -121,13 +121,14 @@ namespace WpfApp2
 {
     public partial class UploadPage : UserControl
     {
+        string filePath;
         public UploadPage()
         {
             InitializeComponent();
         }
 
         // 그래프 이미지를 화면에 표시
-        private void ShowPlotImage()
+        private void ShowPlotImage()   // raw data 이미지 표시 메소드
         {
             try
             {
@@ -147,6 +148,21 @@ namespace WpfApp2
                 MessageBox.Show($"이미지 표시 오류: {ex.Message}");
             }
         }
+        private void GoToModelSetButton_Click(object sender, RoutedEventArgs e)
+        {
+            // 모델 설정 페이지로 이동하는 로직 추가
+            // 예: MainFrame.Content = new ModelSetPage();
+            if (string.IsNullOrEmpty(filePath))
+            {
+                MessageBox.Show("먼저 파일을 선택해 주세요.");
+                return;
+            }
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.MainFrame.Content = new ModelSetPage();
+            }
+        }
 
         // 파일 선택 버튼 클릭 시
         private void SelectFileButton_Click(object sender, RoutedEventArgs e)
@@ -156,10 +172,10 @@ namespace WpfApp2
 
             if (openFileDialog.ShowDialog() == true)
             {
-                string filePath = openFileDialog.FileName;
+                filePath = openFileDialog.FileName;
                 Console.WriteLine($"Selected file: {filePath}"); // 콘솔에 선택한 파일 경로 출력
                 MessageBox.Show($"Python 파일 경로: {filePath}");
-                SelectedFilePath.Text = filePath;
+                //SelectedFilePath.Text = filePath;
 
                 // Python 스크립트 실행
                 string result = RunPythonScript(filePath);
@@ -178,7 +194,7 @@ namespace WpfApp2
             try
             {
                 // Python 스크립트 경로
-                string pythonScriptPath = @"C:\Users\민기조\Desktop\4-1강의자료들\산프\만들던거\mfc-fault-detection\your_script.py"; // 스크립트 경로 설정
+                string pythonScriptPath = @"..\..\..\your_script.py"; // 스크립트 경로 설정
                 string arguments = $"\"{filePath}\""; // 파일 경로를 인수로 전달
 
                 // Python 프로세스 시작
