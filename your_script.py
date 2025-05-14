@@ -107,7 +107,7 @@ def generate_plot(input_file_path):
         # 그래프 제목 설정
         plt.title(f'relationship between SiH4 and {column}')
 
-        plt.savefig(r"C:\Users\cmg11\Desktop\4-1\산프2\gui_연숩\WpfApp2\sine_wave.png")
+        plt.savefig(r".\sine_wave.png")
 
     show_relationship('drift_index', start, end)
 

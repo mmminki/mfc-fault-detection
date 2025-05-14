@@ -157,32 +157,33 @@ namespace WpfApp2
             if (openFileDialog.ShowDialog() == true)
             {
                 string filePath = openFileDialog.FileName;
+                Console.WriteLine($"Selected file: {filePath}"); // 콘솔에 선택한 파일 경로 출력
+                MessageBox.Show($"Python 파일 경로: {filePath}");
                 SelectedFilePath.Text = filePath;
 
                 // Python 스크립트 실행
                 string result = RunPythonScript(filePath);
 
                 // 결과 출력
-                MessageBox.Show($"Python 모델 실행 결과: {result}");
+                //MessageBox.Show($"Python 모델 실행 결과: {result}");
 
                 // 그래프 이미지 표시
-                ShowPlotImage();
+                //ShowPlotImage();
             }
         }
 
-        // Python 스크립트 실행
-        // Python 스크립트 실행
+        // Python 스크립트 실행 함수
         private string RunPythonScript(string filePath)
         {
             try
             {
                 // Python 스크립트 경로
-                string pythonScriptPath = @"C:\Users\cmg11\Desktop\4-1\산프2\gui_연숩\WpfApp2\your_script.py"; // 스크립트 경로 설정
+                string pythonScriptPath = @"C:\Users\민기조\Desktop\4-1강의자료들\산프\만들던거\mfc-fault-detection\your_script.py"; // 스크립트 경로 설정
                 string arguments = $"\"{filePath}\""; // 파일 경로를 인수로 전달
 
                 // Python 프로세스 시작
                 ProcessStartInfo start = new ProcessStartInfo();
-                start.FileName = @"C:\Users\cmg11\AppData\Local\Programs\Python\Python310\python.exe"; // Python 경로 설정
+                start.FileName = @"C:\Users\민기조\AppData\Local\Programs\Python\Python312\python.exe"; // Python 경로 설정
                 start.Arguments = $"{pythonScriptPath} {arguments}";
                 start.UseShellExecute = false;
                 start.RedirectStandardOutput = true;
