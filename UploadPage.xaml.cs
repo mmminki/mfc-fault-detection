@@ -136,7 +136,7 @@ namespace WpfApp2
                 if (File.Exists(plotImagePath))
                 {
                     BitmapImage bitmap = new BitmapImage(new Uri(plotImagePath));
-                    ImagePlot.Source = bitmap; // XAML에서 ImagePlot에 이미지를 표시
+                    // ImagePlot.Source = bitmap; // XAML에서 ImagePlot에 이미지를 표시
                 }
                 else
                 {
@@ -160,6 +160,7 @@ namespace WpfApp2
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
+                // 여기에 raw data 이미지 저장하는 로직 추가 그러고 path를 ModelSetPage에서 이미지로 띄움
                 mainWindow.MainFrame.Content = new ModelSetPage();
             }
         }
@@ -175,16 +176,16 @@ namespace WpfApp2
                 filePath = openFileDialog.FileName;
                 Console.WriteLine($"Selected file: {filePath}"); // 콘솔에 선택한 파일 경로 출력
                 MessageBox.Show($"Python 파일 경로: {filePath}");
-                //SelectedFilePath.Text = filePath;
+                SelectedFilePath.Text = filePath;
 
                 // Python 스크립트 실행
                 string result = RunPythonScript(filePath);
 
-                // 결과 출력
-                //MessageBox.Show($"Python 모델 실행 결과: {result}");
+                //결과 출력
+                MessageBox.Show($"Python 모델 실행 결과: {result}");
 
-                // 그래프 이미지 표시
-                //ShowPlotImage();
+                //그래프 이미지 표시
+                ShowPlotImage();
             }
         }
 
@@ -225,7 +226,6 @@ namespace WpfApp2
                 return null;
             }
         }
-
     }
 }
 

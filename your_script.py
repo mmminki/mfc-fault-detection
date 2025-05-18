@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import sys
 import pandas as pd 
 import numpy as np
+import os
+from datetime import datetime
 
 def generate_plot(input_file_path):
 
@@ -107,12 +109,19 @@ def generate_plot(input_file_path):
         # 그래프 제목 설정
         plt.title(f'relationship between SiH4 and {column}')
 
-        plt.savefig(r".\sine_wave.png")
-
+        #now = datetime.now().strftime("%Y%m%d_%H%M%S")
+        #filename = f"sine_wave_{now}.png"
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        image_dir = os.path.join(script_dir, "image")
+        save_path = os.path.join(image_dir, "sine_wave.png")
+        plt.savefig(save_path)
+        #plt.savefig(r"..\image\sine_wave.png")
+        #plt.savefig(filename)
+            
     show_relationship('drift_index', start, end)
 
 
 if __name__ == "__main__":
-    input_file = sys.argv[1]  # WPF에서 전달된 파일 경로 받기
+    input_file = r"C:\Users\민기조\Desktop\4-1강의자료들\산프\preprocessed_data\run_gasflow_avg_dataset.csv" #sys.argv[1]  # WPF에서 전달된 파일 경로 받기
     generate_plot(input_file)
     print("Plot generated successfully")

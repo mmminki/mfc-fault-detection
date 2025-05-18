@@ -9,6 +9,6 @@ namespace WpfApp2
     /// </summary>
     public partial class App : Application
     {
+        public static string RecipeFilePath { get; set; } = string.Empty;
     }
-
 }
