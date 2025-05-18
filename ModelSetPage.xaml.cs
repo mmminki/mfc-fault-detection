@@ -17,12 +17,13 @@ namespace WpfApp2
         {
             InitializeComponent();
 
-            SelectElementBox.Items.Add("Use Drift(recommended)");       // 콤보박스 아이템 추가 이런식으로 파장 추가하면 될듯 
-            SelectElementBox.Items.Add("None");     // 고정적으로 할거면 xaml에 ComboBoxItem 으로 추가해도 될듯 한데 이 방식이 나을듯
+            SelectDriftBox.Items.Add("Use Drift(recommended)");       // 콤보박스 아이템 추가 이런식으로 파장 추가하면 될듯 
+            SelectDriftBox.Items.Add("None");     // 고정적으로 할거면 xaml에 ComboBoxItem 으로 추가해도 될듯 한데 이 방식이 나을듯
             // raw image 띄우는 코드 필요
+            SelectDriftBox.SelectedIndex = 0; // 기본 선택값 설정
         }
 
-        private void SelectElementBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SelectDriftBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // 선택된 아이템에 따라 다른 작업 수행
             ComboBox comboBox = sender as ComboBox;
